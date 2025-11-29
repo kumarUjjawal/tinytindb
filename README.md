@@ -21,7 +21,7 @@
 
 ---
 
-## Phase 1 – Stabilize Current Design
+##  1 – Stabilize Current Design
 
 ### 1.1 input_buffer module
 
@@ -94,7 +94,7 @@
 
 ---
 
-## Phase 2 – Add Persistence: Pager + Database File
+##  2 – Add Persistence: Pager + Database File
 
 **Goal:** Move from in-memory only to file-backed pages.
 
@@ -144,7 +144,7 @@
 
 ---
 
-## Phase 3 – Introduce Cursor Abstraction
+##  3 – Introduce Cursor Abstraction
 
 **Goal:** Avoid calculating row offsets everywhere and prepare for B-tree.
 
@@ -179,7 +179,7 @@
 
 ---
 
-## Phase 4 – B-Tree Node Layout (Still Single Leaf Page)
+##  4 – B-Tree Node Layout (Still Single Leaf Page)
 
 **Goal:** Switch from flat rows to B-tree shaped layout, starting with leaf nodes only.
 
@@ -224,7 +224,7 @@
 
 ---
 
-## Phase 5 – Leaf Node Search and Splits
+##  5 – Leaf Node Search and Splits
 
 ### 5.1 Binary search on leaf node
 
@@ -246,7 +246,7 @@
 
 ---
 
-## Phase 6 – Internal Nodes and Multi-Level B-Tree
+##  6 – Internal Nodes and Multi-Level B-Tree
 
 ### 6.1 Internal node layout
 
@@ -277,7 +277,7 @@
 
 ---
 
-## Phase 7 – Meta Commands & Debugging
+##  7 – Meta Commands & Debugging
 
 ### 7.1 .constants and .btree
 
@@ -289,7 +289,7 @@
 
 ---
 
-## Phase 8 – Quality of Life & Extras
+##  8 – Quality of Life & Extras
 
 - [ ] Add a simple testing harness:
   - Run script of commands and check output (like the tutorial does with Python).
