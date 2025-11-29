@@ -24,6 +24,4 @@ impl InputBuffer {
 
         Ok(())
     }
-
-    pub fn close(self) {}
 }

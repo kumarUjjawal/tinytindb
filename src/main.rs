@@ -1,15 +1,20 @@
 mod executor;
 mod input_buffer;
 mod parser;
+mod row;
 mod statement;
+mod table;
 
 use executor::execute_statement;
 use input_buffer::InputBuffer;
 use parser::{do_meta_command, prepare_statement};
 use statement::{MetaCommandResult, PrepareResult, Statement, StatementType};
 
+use crate::table::Table;
+
 fn main() {
     let mut input = InputBuffer::new();
+    let mut table = Table::new();
 
     loop {
         InputBuffer::print_prompt();
@@ -33,19 +38,19 @@ fn main() {
             }
         }
 
-        let mut statement = Statement {
-            stype: StatementType::Select,
-        };
+        let mut statement = Statement::new();
 
         match prepare_statement(&input, &mut statement) {
-            PrepareResult::Success => { /* continue */ }
+            PrepareResult::Success => {
+                execute_statement(&statement, &mut table);
+                println!("Executed.");
+            }
             PrepareResult::UnrecognizedStatement => {
                 println!("Unrecognized keyword at start of '{}'.", input.buffer);
-                continue;
+            }
+            PrepareResult::SyntaxError => {
+                println!("Syntax error. Could not parse statement");
             }
         }
-
-        execute_statement(&statement);
-        println!("Executed");
     }
 }
