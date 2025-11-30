@@ -8,7 +8,7 @@ mod table;
 use executor::execute_statement;
 use input_buffer::InputBuffer;
 use parser::{do_meta_command, prepare_statement};
-use statement::{MetaCommandResult, PrepareResult, Statement, StatementType};
+use statement::{MetaCommandResult, PrepareResult, Statement};
 
 use crate::table::Table;
 
@@ -28,7 +28,7 @@ fn main() {
             continue;
         }
 
-        if input.buffer.starts_with('.') {
+        if input.is_meta_command() {
             match do_meta_command(&input) {
                 MetaCommandResult::Success => continue,
                 MetaCommandResult::UnrecognizedCommand => {
